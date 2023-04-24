@@ -141,3 +141,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd5508ff8f1742f449c2e6f7449893d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cutSFX: {fileID: 8300000, guid: eadd3c095832b394c87d5ec24656297a, type: 3}

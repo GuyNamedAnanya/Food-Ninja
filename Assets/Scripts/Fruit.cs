@@ -6,11 +6,10 @@ using UnityEngine;
 public class Fruit : MonoBehaviour
 {
     [SerializeField] GameObject slicedFruitPrefab;
-
-   
-    private void Update()
+    AudioManager audioManager;
+    void Awake()
     {
-        
+        audioManager = FindObjectOfType<AudioManager>();    
     }
 
     public void CreateSlicedFruit()
@@ -47,7 +46,7 @@ public class Fruit : MonoBehaviour
         {
             return;
         }
-        
+        audioManager.PlayCutSFX();
         CreateSlicedFruit();
     }
 
