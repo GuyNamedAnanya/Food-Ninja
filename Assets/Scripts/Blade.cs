@@ -60,19 +60,19 @@ public class Blade : MonoBehaviour
         }
         if(collision.gameObject.CompareTag("Avocado"))
         {
-            FindObjectOfType<GameManager>().IncreaseScore(2);
+            FindObjectOfType<GameManager>().IncreaseScore(3);
         }
         if(collision.gameObject.CompareTag("Coconut"))
         {
-            FindObjectOfType<GameManager>().IncreaseScore(5);
+            FindObjectOfType<GameManager>().IncreaseScore(2);
         }
         if (collision.gameObject.CompareTag("Egg"))
         {
-            FindObjectOfType<GameManager>().IncreaseScore(1);
+            FindObjectOfType<GameManager>().IncreaseScore(5);
         }
         if (collision.gameObject.CompareTag("Lemon"))
         {
-            FindObjectOfType<GameManager>().IncreaseScore(1);
+            FindObjectOfType<GameManager>().IncreaseScore(5);
         }
         if (collision.gameObject.CompareTag("Pear"))
         {
