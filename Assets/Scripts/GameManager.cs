@@ -61,6 +61,9 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 0;
     }
 
+    /// <summary>
+    /// Restarts the game Scene
+    /// </summary>
     public void RestartGameButton()
     {
         Time.timeScale = 1;
