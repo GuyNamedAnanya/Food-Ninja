@@ -142,4 +142,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cutSFX: {fileID: 8300000, guid: eadd3c095832b394c87d5ec24656297a, type: 3}
-  volume: 0.5
