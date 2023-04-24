@@ -5,9 +5,7 @@ using UnityEngine;
 public class AudioManager : MonoBehaviour
 {
     [SerializeField] AudioClip cutSFX;
-    [SerializeField, Range(0, 1)] float cutSFXVolume;
-    [SerializeField] AudioClip bombSFX;
-    [SerializeField, Range(0, 1)] float bombSFXVolume;
+    [SerializeField, Range(0, 1)] float volume;
 
     static AudioManager instance;
 
@@ -27,11 +25,6 @@ public class AudioManager : MonoBehaviour
 
     public void PlayCutSFX()
     {
-        AudioSource.PlayClipAtPoint(cutSFX, Camera.main.transform.position, cutSFXVolume);
-    }
-
-    public void PlayBombSFX()
-    {
-        AudioSource.PlayClipAtPoint(bombSFX, Camera.main.transform.position, bombSFXVolume);
+        AudioSource.PlayClipAtPoint(cutSFX, Camera.main.transform.position, volume);
     }
 }
