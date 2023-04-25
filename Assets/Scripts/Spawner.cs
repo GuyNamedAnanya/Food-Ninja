@@ -4,33 +4,38 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
+    [Header("Interactables")]
     [SerializeField] GameObject[] fruitsToSpawn;
     [SerializeField] GameObject bomb;
-    GameObject fruit;
-    GameObject gameObjectToSpawn;
-    
-    
 
-    [SerializeField] Transform[] spawnPlaces;
-    Transform place;
+    [Header("Coroutine Related Values")]
+    [SerializeField] float minWaitTime, maxWaitTime;
 
-    [SerializeField] float minTime, maxTime;
+    [Header("Force Related Values")]
     [SerializeField] float minForce, maxForce;
 
-    int chance;
-    // Start is called before the first frame update
+    [Header("Spawn Places")]
+    [SerializeField] Transform[] spawnPlaces;
+
+    float waitTimeBeforeDestroying = 5f;
     void Start()
     {
         StartCoroutine(FruitSpawner());
     }
 
+    /// <summary>
+    /// Spawns a random fruit from an array of fruits in a random place
+    /// </summary>
+    /// <returns></returns>
     IEnumerator FruitSpawner()
     {
         while (true)
         {
-            yield return new WaitForSeconds(Random.Range(minTime, maxTime));
+            yield return new WaitForSeconds(Random.Range(minWaitTime, maxWaitTime));
 
-            chance = Random.Range(1, 100);
+            GameObject gameObjectToSpawn;
+
+            int chance = Random.Range(1, 100);
 
             if (chance < 25)
             {
@@ -40,16 +45,14 @@ public class Spawner : MonoBehaviour
             {
                 gameObjectToSpawn = fruitsToSpawn[Random.Range(0, fruitsToSpawn.Length)];
             }
-            place = spawnPlaces[Random.Range(0, spawnPlaces.Length)];
+            Transform place = spawnPlaces[Random.Range(0, spawnPlaces.Length)];
 
-            fruit = Instantiate(gameObjectToSpawn, place.position, place.rotation);
+            GameObject fruit = Instantiate(gameObjectToSpawn, place.position, place.rotation);
 
             fruit.GetComponent<Rigidbody2D>().AddForce(place.transform.up * Random.Range(minForce, maxForce), ForceMode2D.Impulse);
 
-            Destroy(fruit, 5f);
+            Destroy(fruit, waitTimeBeforeDestroying);
         }
-        
-
-        
+         
     }
 }

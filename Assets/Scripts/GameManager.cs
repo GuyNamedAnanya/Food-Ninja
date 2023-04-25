@@ -8,18 +8,19 @@ using UnityEngine.Advertisements;
 
 public class GameManager : MonoBehaviour
 {
+    [Header("UI Text")]
     [SerializeField] TextMeshProUGUI scoreText;
     [SerializeField] TextMeshProUGUI gameOverScoreText;
     [SerializeField] TextMeshProUGUI highScoreText;
     [SerializeField] TextMeshProUGUI highScorePanelText;
+
+    [Header("UI Panel")]
     [SerializeField] GameObject gameOverPanel;
 
     int score;
     int highScore;
-   
 
-
-    private void Awake()
+    void Awake()
     {
         Advertisement.Initialize("5166105");
         gameOverPanel.SetActive(false);
@@ -29,18 +30,10 @@ public class GameManager : MonoBehaviour
         
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
+    /// <summary>
+    /// Increases score And sets highscore
+    /// </summary>
+    /// <param name="points"></param>
     public void IncreaseScore(int points)
     {
         score += points;
@@ -52,6 +45,9 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Activates advertisement and starts the bomb hit sequence
+    /// </summary>
     public void BombHit()
     {
         Advertisement.Show("BombHit");
@@ -70,6 +66,9 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene("Main");
     }
 
+    /// <summary>
+    /// Quits game
+    /// </summary>
     public void QuitGame()
     {
         Application.Quit();

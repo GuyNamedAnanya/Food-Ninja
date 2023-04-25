@@ -6,12 +6,21 @@ using UnityEngine;
 public class Fruit : MonoBehaviour
 {
     [SerializeField] GameObject slicedFruitPrefab;
+
+    float minExplosiveForce = 1000;
+    float maxExplosiveForce = 2000;
+    float explosionRadius = 10f;
+    float timeToDestroy = 5f;
+
     AudioManager audioManager;
     void Awake()
     {
         audioManager = FindObjectOfType<AudioManager>();    
     }
 
+    /// <summary>
+    /// Creates the sliced fruit gameobject and add force to it 
+    /// </summary>
     public void CreateSlicedFruit()
     {
         GameObject inst1 = (GameObject)Instantiate(slicedFruitPrefab, transform.position, transform.rotation);
@@ -24,21 +33,25 @@ public class Fruit : MonoBehaviour
         foreach (Rigidbody r in rbds1)
         {
             r.transform.rotation = Random.rotation;
-            r.AddExplosionForce(Random.Range(500, 1000), transform.position, 5f);
+            r.AddExplosionForce(Random.Range(minExplosiveForce, maxExplosiveForce), transform.position, explosionRadius);
         }
 
         foreach (Rigidbody rb in rbds2)
         {
             rb.transform.rotation = Random.rotation;
-            rb.AddExplosionForce(Random.Range(500, 1000), transform.position, 5f);
+            rb.AddExplosionForce(Random.Range(minExplosiveForce, maxExplosiveForce), transform.position, explosionRadius);
         }
-        Destroy(inst1.gameObject, 5f);
-        Destroy(inst2.gameObject, 5f);
+        Destroy(inst1.gameObject, timeToDestroy);
+        Destroy(inst2.gameObject, timeToDestroy);
         Destroy(gameObject);
         
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    /// <summary>
+    /// checks if knife collides with fruit
+    /// </summary>
+    /// <param name="collision"></param>
+    void OnTriggerEnter2D(Collider2D collision)
     {
         Blade blade = collision.GetComponent<Blade>();
 

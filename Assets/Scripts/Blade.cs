@@ -5,29 +5,25 @@ using UnityEngine;
 public class Blade : MonoBehaviour
 {
     [SerializeField] float minMoveDistance = 0.3f;
+
     Rigidbody2D body;
-
     Vector3 lastMousePos;
-
     Collider2D myCollider;
-    private void Awake()
+    void Awake()
     {
         body = GetComponent<Rigidbody2D>();
         myCollider = GetComponent<Collider2D>();
     }
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
+    
     void Update()
     {
         myCollider.enabled = IsMouseMoving();
         BladeOnMouse();
     }
 
+    /// <summary>
+    /// Sets the blade gameobject to mouse
+    /// </summary>
     void BladeOnMouse()
     {
         var mousePos = Input.mousePosition;
@@ -36,6 +32,11 @@ public class Blade : MonoBehaviour
         body.position = Camera.main.ScreenToWorldPoint(mousePos);
     }
 
+    /// <summary>
+    /// Checks if the mouse is moving or stationery 
+    /// and based on that turns the collider on and off
+    /// </summary>
+    /// <returns></returns>
     bool IsMouseMoving()
     {
         Vector3 currentMousePos = transform.position;
@@ -52,7 +53,11 @@ public class Blade : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    /// <summary>
+    /// Sets the score of each fruit
+    /// </summary>
+    /// <param name="collision"></param>
+    void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.gameObject.CompareTag("Apple"))
         {

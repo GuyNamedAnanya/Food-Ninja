@@ -10,8 +10,9 @@ public class Bomb : MonoBehaviour
     {
         audioManager = FindObjectOfType<AudioManager>();
     }
-    private void OnTriggerEnter2D(Collider2D collision)
+    void OnTriggerEnter2D(Collider2D collision)
     {
+        //blade class will be called if the collision is with blade i.e. mouse
         Blade b = collision.GetComponent<Blade>();
 
         if(!b)
@@ -19,7 +20,7 @@ public class Bomb : MonoBehaviour
             return;
         }
 
-        audioManager.BombHitVFX();
+        audioManager.BombHitSFX();
         FindObjectOfType<GameManager>().BombHit();
     }
 }
