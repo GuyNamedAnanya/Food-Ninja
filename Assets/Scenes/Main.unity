@@ -2015,14 +2015,14 @@ MonoBehaviour:
   - {fileID: 1647841748340330737, guid: d54f942671163e144b6ee38e10d545ef, type: 3}
   - {fileID: 8126659392738246122, guid: 4f4725ecd3aa39a43a535c79cbb330a9, type: 3}
   bomb: {fileID: 7256388997609287455, guid: 1556c6a39b246cf4eb058f5a877c50dc, type: 3}
+  minWaitTime: 0.5
+  maxWaitTime: 1
+  minForce: 10
+  maxForce: 12
   spawnPlaces:
   - {fileID: 1919525738}
   - {fileID: 589904515}
   - {fileID: 433168800}
-  minTime: 0.3
-  maxTime: 1
-  minForce: 10
-  maxForce: 12
 --- !u!4 &1465936563
 Transform:
   m_ObjectHideFlags: 0
